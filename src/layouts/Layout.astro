@@ -1,0 +1,672 @@
+---
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+		<script is:inline src="https://link.msgsndr.com/js/form_embed.js"></script>
+	</head>
+	<body>
+		<header id="main-header" class="site-header">
+			<div class="header-container">
+				<div class="header-logo">
+					<a href="/"><img src="/images/Legacy-Window-Tint-Logo-White.png" alt="Legacy Window Tint" /></a>
+				</div>
+
+				<nav class="header-nav">
+					<a href="/about" class="nav-link">About</a>
+					<a href="/contact" class="nav-link">Contact</a>
+				</nav>
+
+				<div class="header-cta">
+					<a href="tel:8888875897" class="header-phone">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+						</svg>
+						<span class="phone-number">(888) 887-5897</span>
+					</a>
+					<a href="#quote-form" class="header-btn">Get Free Quote</a>
+				</div>
+			</div>
+		</header>
+
+		<slot />
+
+		<!-- Footer -->
+		<footer class="site-footer">
+			<div class="footer-container">
+				<div class="footer-content">
+					<!-- Column 1: Business Info -->
+					<div class="footer-column">
+						<img src="/images/Legacy-Window-Tint-Logo-White.png" alt="Legacy Window Tint" class="footer-logo-img" />
+						<p class="footer-tagline">Professional Residential Window Tinting</p>
+						<p class="footer-service-area">Serving All of Maricopa County<br />Based in Surprise, AZ</p>
+					</div>
+
+					<!-- Column 2: Contact -->
+					<div class="footer-column">
+						<h4 class="footer-heading">Contact</h4>
+						<ul class="footer-contact">
+							<li>
+								<a href="tel:+18888875897" class="footer-link footer-phone-link">
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+									</svg>
+									(888) 887-5897
+								</a>
+							</li>
+							<li>
+								<a href="mailto:info@legacywindowtint.com" class="footer-link">
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+										<polyline points="22,6 12,13 2,6"></polyline>
+									</svg>
+									info@legacywindowtint.com
+								</a>
+							</li>
+						</ul>
+						<div class="footer-hours">
+							<h5 class="footer-hours-title">Hours</h5>
+							<p>Mon-Sat: 8am-6pm</p>
+							<p>Sunday: Closed</p>
+						</div>
+					</div>
+
+					<!-- Column 3: Quick Links -->
+					<div class="footer-column">
+						<h4 class="footer-heading">Quick Links</h4>
+						<ul class="footer-links">
+							<li><a href="/" class="footer-link">Home</a></li>
+							<li><a href="/about" class="footer-link">About</a></li>
+							<li><a href="/contact" class="footer-link">Contact</a></li>
+							<li><a href="#" class="footer-link">Privacy Policy</a></li>
+							<li><a href="#" class="footer-link">Terms of Service</a></li>
+						</ul>
+					</div>
+
+					<!-- Column 4: Service Area -->
+					<div class="footer-column">
+						<h4 class="footer-heading">Proudly Serving</h4>
+						<ul class="footer-cities">
+							<li>Scottsdale</li>
+							<li>Phoenix</li>
+							<li>Tempe</li>
+							<li>Mesa</li>
+							<li>Chandler</li>
+							<li>Gilbert</li>
+							<li>Surprise</li>
+							<li>Peoria</li>
+							<li>Glendale</li>
+							<li>Goodyear</li>
+							<li>Buckeye</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Footer Bottom Bar -->
+				<div class="footer-bottom">
+					<p class="footer-copyright">&copy; 2025 Legacy Window Tint. All rights reserved.</p>
+					<p class="footer-license">Licensed & Insured | ROC #123456</p>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--black: #000000;
+		--gold: #fbbf24;
+		--white: #ffffff;
+		--gray-50: #f9fafb;
+		--gray-100: #f3f4f6;
+		--gray-200: #e5e7eb;
+		--gray-300: #d1d5db;
+		--gray-700: #374151;
+		--gray-800: #1f2937;
+		--gray-900: #111827;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		line-height: 1.6;
+		color: var(--gray-900);
+		background: var(--white);
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	h1, h2, h3 {
+		line-height: 1.2;
+		font-weight: 800;
+	}
+
+	h1 {
+		font-size: 2.5rem;
+	}
+
+	h2 {
+		font-size: 2rem;
+	}
+
+	h3 {
+		font-size: 1.5rem;
+	}
+
+	@media (max-width: 768px) {
+		h1 {
+			font-size: 1.875rem;
+		}
+		h2 {
+			font-size: 1.5rem;
+		}
+		h3 {
+			font-size: 1.25rem;
+		}
+	}
+
+	/* Buttons */
+	.btn {
+		display: inline-block;
+		padding: 16px 32px;
+		font-size: 18px;
+		font-weight: 700;
+		text-align: center;
+		text-decoration: none;
+		border-radius: 8px;
+		transition: all 0.2s;
+		cursor: pointer;
+		border: none;
+		min-height: 44px;
+	}
+
+	.btn-primary {
+		background: var(--gold);
+		color: var(--black);
+	}
+
+	.btn-primary:hover {
+		background: #f59e0b;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+	}
+
+	.btn-phone {
+		background: var(--black);
+		color: var(--white);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+	}
+
+	.btn-phone:hover {
+		background: var(--gray-800);
+	}
+
+	@media (max-width: 768px) {
+		.btn {
+			width: 100%;
+			font-size: 16px;
+		}
+	}
+
+	/* Sticky Header Styles */
+	.site-header {
+		position: sticky;
+		top: 0;
+		left: 0;
+		right: 0;
+		background: var(--black);
+		z-index: 1000;
+		transition: all 0.3s ease;
+		height: 80px;
+		border-bottom: 2px solid var(--gold);
+	}
+
+	.site-header.scrolled {
+		height: 60px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	}
+
+	.header-container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 24px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 32px;
+	}
+
+	.header-logo a {
+		font-size: 24px;
+		font-weight: 800;
+		color: var(--white);
+		text-decoration: none;
+		white-space: nowrap;
+		transition: color 0.2s;
+	}
+
+	.header-logo a:hover {
+		color: var(--gold);
+	}
+
+	.site-header.scrolled .header-logo a {
+		font-size: 20px;
+	}
+
+	.header-logo img {
+		height: 50px;
+		width: auto;
+		display: block;
+		transition: opacity 0.2s;
+		filter: brightness(0) invert(1);
+	}
+
+	.header-logo img:hover {
+		opacity: 0.85;
+	}
+
+	.site-header.scrolled .header-logo img {
+		height: 40px;
+	}
+
+	.header-nav {
+		display: flex;
+		gap: 24px;
+		align-items: center;
+	}
+
+	.nav-link {
+		color: var(--gray-300);
+		text-decoration: none;
+		font-size: 14px;
+		font-weight: 600;
+		transition: color 0.2s;
+		white-space: nowrap;
+	}
+
+	.nav-link:hover {
+		color: var(--gold);
+	}
+
+	.header-cta {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		margin-left: auto;
+	}
+
+	.header-phone {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		color: var(--white);
+		text-decoration: none;
+		font-size: 22px;
+		font-weight: 700;
+		transition: all 0.2s;
+		white-space: nowrap;
+		padding: 8px 16px;
+		border-radius: 8px;
+	}
+
+	.header-phone:hover {
+		color: var(--gold);
+		background: rgba(251, 191, 36, 0.1);
+	}
+
+	.header-phone svg {
+		flex-shrink: 0;
+		color: var(--gold);
+	}
+
+	.site-header.scrolled .header-phone {
+		font-size: 18px;
+	}
+
+	.header-btn {
+		background: var(--gold);
+		color: var(--black);
+		padding: 14px 28px;
+		font-size: 16px;
+		font-weight: 700;
+		text-decoration: none;
+		border-radius: 8px;
+		transition: all 0.2s;
+		white-space: nowrap;
+	}
+
+	.header-btn:hover {
+		background: #f59e0b;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+	}
+
+	.site-header.scrolled .header-btn {
+		padding: 10px 20px;
+		font-size: 14px;
+	}
+
+	/* Tablet Styles */
+	@media (max-width: 1024px) {
+		.header-nav {
+			display: none;
+		}
+
+		.header-phone {
+			font-size: 18px;
+		}
+
+		.site-header.scrolled .header-phone {
+			font-size: 16px;
+		}
+	}
+
+	/* Mobile Styles */
+	@media (max-width: 767px) {
+		.site-header {
+			height: 70px;
+		}
+
+		.site-header.scrolled {
+			height: 60px;
+		}
+
+		.header-container {
+			padding: 0 16px;
+			gap: 16px;
+		}
+
+		.header-logo a {
+			font-size: 18px;
+		}
+
+		.site-header.scrolled .header-logo a {
+			font-size: 16px;
+		}
+
+		.header-phone {
+			display: none; /* Hide on mobile - use floating button instead */
+		}
+
+		.header-btn {
+			padding: 10px 16px;
+			font-size: 14px;
+			flex: 1;
+			text-align: center;
+		}
+
+		.site-header.scrolled .header-btn {
+			padding: 8px 14px;
+			font-size: 13px;
+		}
+
+		.header-cta {
+			flex: 1;
+			margin-left: 0;
+		}
+	}
+
+	/* Footer Styles */
+	.site-footer {
+		background: #1a1a1a;
+		color: #e5e7eb;
+		padding: 60px 0 0;
+	}
+
+	.footer-container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 24px;
+	}
+
+	.footer-content {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 48px;
+		padding-bottom: 48px;
+		border-bottom: 1px solid #374151;
+	}
+
+	.footer-column {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.footer-logo {
+		font-size: 22px;
+		font-weight: 800;
+		color: var(--white);
+		margin-bottom: 8px;
+	}
+
+	.footer-logo-img {
+		width: 200px;
+		height: auto;
+		display: block;
+		margin-bottom: 16px;
+		filter: brightness(0) invert(1);
+	}
+
+	@media (max-width: 767px) {
+		.footer-logo-img {
+			width: 160px;
+		}
+	}
+
+	.footer-tagline {
+		font-size: 14px;
+		color: var(--gold);
+		font-weight: 600;
+		margin-bottom: 4px;
+	}
+
+	.footer-service-area {
+		font-size: 14px;
+		color: #9ca3af;
+		line-height: 1.6;
+	}
+
+	.footer-heading {
+		font-size: 16px;
+		font-weight: 700;
+		color: var(--white);
+		margin-bottom: 8px;
+	}
+
+	.footer-contact {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-bottom: 20px;
+	}
+
+	.footer-link {
+		color: #d1d5db;
+		text-decoration: none;
+		font-size: 14px;
+		transition: color 0.2s;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.footer-link:hover {
+		color: var(--gold);
+	}
+
+	.footer-link svg {
+		flex-shrink: 0;
+		color: var(--gold);
+	}
+
+	.footer-phone-link {
+		font-weight: 600;
+		font-size: 16px;
+	}
+
+	.footer-hours {
+		margin-top: 8px;
+	}
+
+	.footer-hours-title {
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--white);
+		margin-bottom: 8px;
+	}
+
+	.footer-hours p {
+		font-size: 14px;
+		color: #9ca3af;
+		line-height: 1.8;
+	}
+
+	.footer-links {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.footer-cities {
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 8px;
+		font-size: 14px;
+		color: #9ca3af;
+	}
+
+	.footer-cities li {
+		line-height: 1.8;
+	}
+
+	.footer-bottom {
+		padding: 24px 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 16px;
+	}
+
+	.footer-copyright,
+	.footer-license {
+		font-size: 14px;
+		color: #9ca3af;
+	}
+
+	.footer-license {
+		font-weight: 600;
+		color: #d1d5db;
+	}
+
+	/* Footer Tablet Styles */
+	@media (max-width: 1024px) {
+		.footer-content {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 40px;
+		}
+	}
+
+	/* Footer Mobile Styles */
+	@media (max-width: 767px) {
+		.site-footer {
+			padding: 48px 0 0;
+		}
+
+		.footer-container {
+			padding: 0 16px;
+		}
+
+		.footer-content {
+			grid-template-columns: 1fr;
+			gap: 32px;
+			padding-bottom: 32px;
+		}
+
+		.footer-cities {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.footer-bottom {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			padding: 20px 0;
+		}
+	}
+</style>
+
+<script>
+	// Sticky header behavior
+	const header = document.getElementById('main-header');
+	let lastScrollTop = 0;
+
+	window.addEventListener('scroll', () => {
+		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+		if (scrollTop > 50) {
+			header?.classList.add('scrolled');
+		} else {
+			header?.classList.remove('scrolled');
+		}
+
+		lastScrollTop = scrollTop;
+	});
+
+	// Smooth scroll for anchor links
+	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+		anchor.addEventListener('click', function (e) {
+			const href = this.getAttribute('href');
+			if (href === '#' || href === null) return;
+
+			const target = document.querySelector(href);
+			if (target) {
+				e.preventDefault();
+				const headerOffset = 80;
+				const elementPosition = target.getBoundingClientRect().top;
+				const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+				window.scrollTo({
+					top: offsetPosition,
+					behavior: 'smooth'
+				});
+			}
+		});
+	});
+</script>
