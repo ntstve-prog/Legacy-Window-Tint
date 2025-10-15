@@ -198,7 +198,7 @@ import Layout from '../layouts/Layout.astro';
 	<!-- Hero Section -->
 	<section class="hero">
 		<div class="container">
-			<h1>Stop Heat, Glare, and $400+ AC Bills Instantly</h1>
+			<h1>Stop Heat, Glare, and <span class="highlight">$400+</span> AC Bills Instantly</h1>
 			<p class="trust-bar">Lifetime Warranty | Licensed & Insured</p>
 			<p class="hero-subtitle">Every room in your home stays comfortable all day while you save $250-$400/month on cooling. Professional installation in just 3 hours by certified technicians.</p>
 
@@ -555,9 +555,11 @@ import Layout from '../layouts/Layout.astro';
 		margin-bottom: 15px;
 		color: var(--white);
 		font-size: 2.5rem;
-		font-weight: 900;
-		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-		letter-spacing: -0.02em;
+	}
+
+	.hero h1 .highlight {
+		color: var(--gold);
+		font-weight: 800;
 	}
 
 	.trust-bar {
