@@ -329,6 +329,21 @@ import Layout from '../layouts/Layout.astro';
 							<p>Professional installation in 3 hours - no mess, no hassle</p>
 						</div>
 					</div>
+
+					<div class="trust-item">
+						<div class="trust-item-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<rect x="3" y="3" width="7" height="7"/>
+								<rect x="14" y="3" width="7" height="7"/>
+								<rect x="14" y="14" width="7" height="7"/>
+								<rect x="3" y="14" width="7" height="7"/>
+							</svg>
+						</div>
+						<div class="trust-item-content">
+							<h3>No Job Too Small</h3>
+							<p>One sliding door to every window in your home</p>
+						</div>
+					</div>
 				</div>
 
 				<!-- Form Column -->
@@ -856,11 +871,17 @@ import Layout from '../layouts/Layout.astro';
 
 	@media (max-width: 1024px) {
 		.form-layout {
-			grid-template-columns: 1fr;
+			display: flex;
+			flex-direction: column;
 			gap: 30px;
 		}
 
+		.form-container {
+			order: 1;
+		}
+
 		.trust-signals {
+			order: 2;
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			gap: 12px;
