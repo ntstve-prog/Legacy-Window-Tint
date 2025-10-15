@@ -267,47 +267,67 @@ import Layout from '../layouts/Layout.astro';
 				<!-- Benefit Signals Column -->
 				<div class="trust-signals">
 					<div class="trust-item">
-						<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
-							<circle cx="11.5" cy="19" r="2.5"/>
-						</svg>
-						<h3>Every Room 15° Cooler</h3>
-						<p>Finally use that west-facing room again without sweating</p>
+						<div class="trust-item-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+								<circle cx="11.5" cy="19" r="2.5"/>
+							</svg>
+						</div>
+						<div class="trust-item-content">
+							<h3>Every Room 15° Cooler</h3>
+							<p>Finally use that west-facing room again without sweating</p>
+						</div>
 					</div>
 
 					<div class="trust-item">
-						<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<circle cx="12" cy="12" r="10"/>
-							<path d="M12 6v6l4 2"/>
-						</svg>
-						<h3>Slash Your AC Bill By $250-$400/Month</h3>
-						<p>Most customers see 30-50% reduction starting next month</p>
+						<div class="trust-item-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<circle cx="12" cy="12" r="10"/>
+								<path d="M12 6v6l4 2"/>
+							</svg>
+						</div>
+						<div class="trust-item-content">
+							<h3>Slash Your AC Bill By $250-$400/Month</h3>
+							<p>Most customers see 30-50% reduction starting next month</p>
+						</div>
 					</div>
 
 					<div class="trust-item">
-						<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
-							<polyline points="17 2 12 7 7 2"/>
-						</svg>
-						<h3>Watch TV Without Closing Blinds</h3>
-						<p>No more glare ruining the game or movie night</p>
+						<div class="trust-item-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+								<polyline points="17 2 12 7 7 2"/>
+							</svg>
+						</div>
+						<div class="trust-item-content">
+							<h3>Watch TV Without Closing Blinds</h3>
+							<p>No more glare ruining the game or movie night</p>
+						</div>
 					</div>
 
 					<div class="trust-item">
-						<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<polyline points="20 6 9 17 4 12"/>
-							<circle cx="12" cy="12" r="10"/>
-						</svg>
-						<h3>HOA-Approved Options Available</h3>
-						<p>We handle all paperwork and compliance requirements</p>
+						<div class="trust-item-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polyline points="20 6 9 17 4 12"/>
+								<circle cx="12" cy="12" r="10"/>
+							</svg>
+						</div>
+						<div class="trust-item-content">
+							<h3>HOA-Approved Options Available</h3>
+							<p>We handle all paperwork and compliance requirements</p>
+						</div>
 					</div>
 
 					<div class="trust-item">
-						<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-						</svg>
-						<h3>Comfortable Home This Weekend</h3>
-						<p>Professional installation in 3 hours - no mess, no hassle</p>
+						<div class="trust-item-icon">
+							<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+							</svg>
+						</div>
+						<div class="trust-item-content">
+							<h3>Comfortable Home This Weekend</h3>
+							<p>Professional installation in 3 hours - no mess, no hassle</p>
+						</div>
 					</div>
 				</div>
 
@@ -787,28 +807,44 @@ import Layout from '../layouts/Layout.astro';
 	.trust-signals {
 		display: flex;
 		flex-direction: column;
-		gap: 30px;
+		gap: 16px;
 	}
 
 	.trust-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
 		text-align: left;
 	}
 
-	.trust-item svg {
+	.trust-item-icon {
+		flex-shrink: 0;
+		width: 32px;
+		height: 32px;
+	}
+
+	.trust-item-icon svg {
 		stroke: var(--gold);
-		margin-bottom: 15px;
+		width: 100%;
+		height: 100%;
+	}
+
+	.trust-item-content {
+		flex: 1;
 	}
 
 	.trust-item h3 {
-		font-size: 1.25rem;
-		margin-bottom: 8px;
+		font-size: 1.125rem;
+		margin-bottom: 4px;
 		color: var(--gray-900);
+		line-height: 1.3;
 	}
 
 	.trust-item p {
 		color: var(--gray-700);
-		font-size: 0.95rem;
-		line-height: 1.6;
+		font-size: 0.875rem;
+		line-height: 1.5;
+		margin: 0;
 	}
 
 	.form-container {
@@ -821,19 +857,77 @@ import Layout from '../layouts/Layout.astro';
 	@media (max-width: 1024px) {
 		.form-layout {
 			grid-template-columns: 1fr;
-			gap: 40px;
+			gap: 30px;
 		}
 
 		.trust-signals {
-			grid-template-columns: repeat(2, 1fr);
 			display: grid;
-			gap: 20px;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 12px;
+		}
+
+		.trust-item {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			background: var(--gray-50);
+			padding: 12px;
+			border-radius: 8px;
+			border: 1px solid var(--gray-200);
+		}
+
+		.trust-item-icon {
+			width: 28px;
+			height: 28px;
+		}
+
+		.trust-item h3 {
+			font-size: 0.95rem;
+			margin-bottom: 2px;
+		}
+
+		.trust-item p {
+			font-size: 0.8rem;
 		}
 	}
 
 	@media (max-width: 768px) {
+		.form-layout {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.form-container {
+			order: 1;
+		}
+
 		.trust-signals {
+			order: 2;
 			grid-template-columns: 1fr;
+			gap: 10px;
+			margin-top: 20px;
+		}
+
+		.trust-item {
+			flex-direction: row;
+			align-items: flex-start;
+			text-align: left;
+			padding: 10px 12px;
+		}
+
+		.trust-item-icon {
+			width: 24px;
+			height: 24px;
+		}
+
+		.trust-item h3 {
+			font-size: 0.875rem;
+			margin-bottom: 2px;
+		}
+
+		.trust-item p {
+			font-size: 0.75rem;
+			line-height: 1.4;
 		}
 	}
 
