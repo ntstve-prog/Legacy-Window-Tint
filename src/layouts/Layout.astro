@@ -220,16 +220,18 @@ const { title, description } = Astro.props;
 	}
 
 	.btn-phone {
-		background: var(--black);
-		color: var(--white);
+		background: var(--white);
+		color: var(--black);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 8px;
+		border: 2px solid var(--white);
 	}
 
 	.btn-phone:hover {
-		background: var(--gray-800);
+		background: var(--gray-100);
+		border-color: var(--gray-100);
 	}
 
 	@media (max-width: 768px) {
