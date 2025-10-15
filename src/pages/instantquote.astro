@@ -378,49 +378,44 @@
 			window.addWindow = function() {
 				windowCount++;
 				const container = document.getElementById('windowsContainer');
-				const newWindow = document.createElement('div');
-				newWindow.className = 'window-entry';
+
+				// Clone the first window entry to preserve all styling
+				const template = document.querySelector('.window-entry[data-window="1"]');
+				const newWindow = template.cloneNode(true);
 				newWindow.dataset.window = windowCount;
 
-			newWindow.innerHTML = `
-				<div class="window-entry-header">
-					<span class="window-entry-title">Window Set ${windowCount}</span>
-					<span class="remove-btn" onclick="removeWindow(${windowCount})">× Remove</span>
-				</div>
-				<div class="input-row">
-					<div class="input-group">
-						<label>Width (feet)</label>
-						<input type="number" class="input-control" name="width${windowCount}" placeholder="4" min="0.5" step="0.5" required>
-					</div>
-					<div class="input-group">
-						<label>Height (feet)</label>
-						<input type="number" class="input-control" name="height${windowCount}" placeholder="6" min="0.5" step="0.5" required>
-					</div>
-				</div>
-				<div class="input-row">
-					<div class="input-group">
-						<label>Number of Windows</label>
-						<input type="number" class="input-control" name="quantity${windowCount}" placeholder="1" min="1" value="1" required>
-					</div>
-					<div class="input-group">
-						<label>Floor Location</label>
-						<select class="input-control" name="floor${windowCount}">
-							<option value="first">First Floor</option>
-							<option value="second">Second Floor (+$2/sqft)</option>
-							<option value="high">High/Difficult (+$4/sqft)</option>
-						</select>
-					</div>
-				</div>
-				<div class="quick-select">
-					<span style="font-size: 14px; color: #666; margin-right: 10px;">Quick sizes:</span>
-					<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 3, 5)">3x5</button>
-					<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 4, 6)">4x6</button>
-					<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 5, 6)">5x6</button>
-					<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 6, 8)">6x8</button>
-				</div>
-			`;
+				// Update the header
+				const title = newWindow.querySelector('.window-entry-title');
+				title.textContent = `Window Set ${windowCount}`;
 
-			container.appendChild(newWindow);
+				// Add remove button if it doesn't exist (first window doesn't have one)
+				let removeBtn = newWindow.querySelector('.remove-btn');
+				if (!removeBtn) {
+					const header = newWindow.querySelector('.window-entry-header');
+					removeBtn = document.createElement('span');
+					removeBtn.className = 'remove-btn';
+					header.appendChild(removeBtn);
+				}
+				removeBtn.textContent = '× Remove';
+				removeBtn.onclick = () => removeWindow(windowCount);
+
+				// Update all input names and clear values
+				newWindow.querySelectorAll('input, select').forEach(input => {
+					const baseName = input.name.replace(/\d+$/, '');
+					input.name = baseName + windowCount;
+					if (input.type === 'number') {
+						input.value = input.name.includes('quantity') ? '1' : '';
+					}
+				});
+
+				// Update quick select buttons
+				newWindow.querySelectorAll('.quick-btn').forEach((btn, index) => {
+					const sizes = [[3,5], [4,6], [5,6], [6,8]];
+					const [width, height] = sizes[index];
+					btn.onclick = () => setWindowSize(windowCount, width, height);
+				});
+
+				container.appendChild(newWindow);
 			}
 
 			// Remove window set
