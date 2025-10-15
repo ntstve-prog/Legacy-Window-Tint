@@ -158,27 +158,163 @@
 						</div>
 					</div>
 
-					<!-- Right Column: Form -->
+					<!-- Right Column: Calculator -->
 					<div class="form-column">
 						<div class="form-card">
 							<div class="form-header">
-								<h2>Tell Us About Your Project</h2>
-								<p>We'll provide accurate pricing based on your specific needs</p>
+								<h2>Calculate Your Exact Price</h2>
+								<p>Get a personalized quote based on your specific windows</p>
 							</div>
 
-							<!-- Form Placeholder -->
+							<!-- Price Calculator -->
 							<div class="form-container">
-								<!-- USER WILL ADD GOHIGHLEVEL IFRAME HERE -->
-								<div class="form-placeholder">
-									<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-										<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-										<polyline points="14 2 14 8 20 8"/>
-										<line x1="16" y1="13" x2="8" y2="13"/>
-										<line x1="16" y1="17" x2="8" y2="17"/>
-										<polyline points="10 9 9 9 8 9"/>
-									</svg>
-									<p><strong>Form Iframe Placeholder</strong></p>
-									<p class="placeholder-note">Replace this section with your GoHighLevel form iframe code</p>
+								<form id="priceCalculator">
+									<!-- Goals Section -->
+									<div class="calc-section">
+										<h3 class="calc-section-title">What Are You Looking to Achieve?</h3>
+										<div class="goals-grid">
+											<label class="goal-option">
+												<input type="checkbox" name="goals" value="heat" checked>
+												<div class="goal-icon">🌡️</div>
+												<div>Block Heat</div>
+											</label>
+											<label class="goal-option">
+												<input type="checkbox" name="goals" value="glare">
+												<div class="goal-icon">📺</div>
+												<div>Stop Glare</div>
+											</label>
+											<label class="goal-option">
+												<input type="checkbox" name="goals" value="privacy">
+												<div class="goal-icon">🏠</div>
+												<div>Add Privacy</div>
+											</label>
+											<label class="goal-option">
+												<input type="checkbox" name="goals" value="uv">
+												<div class="goal-icon">☀️</div>
+												<div>UV Protection</div>
+											</label>
+										</div>
+									</div>
+
+									<!-- Windows Section -->
+									<div class="calc-section">
+										<h3 class="calc-section-title">Your Windows</h3>
+										<div class="windows-container" id="windowsContainer">
+											<div class="window-entry" data-window="1">
+												<div class="window-entry-header">
+													<span class="window-entry-title">Window Set 1</span>
+												</div>
+												<div class="input-row">
+													<div class="input-group">
+														<label>Width (feet)</label>
+														<input type="number" class="input-control" name="width1" placeholder="4" min="0.5" step="0.5" required>
+													</div>
+													<div class="input-group">
+														<label>Height (feet)</label>
+														<input type="number" class="input-control" name="height1" placeholder="6" min="0.5" step="0.5" required>
+													</div>
+												</div>
+												<div class="input-row">
+													<div class="input-group">
+														<label>Number of Windows</label>
+														<input type="number" class="input-control" name="quantity1" placeholder="1" min="1" value="1" required>
+													</div>
+													<div class="input-group">
+														<label>Floor Location</label>
+														<select class="input-control" name="floor1">
+															<option value="first">First Floor</option>
+															<option value="second">Second Floor (+$2/sqft)</option>
+															<option value="high">High/Difficult (+$4/sqft)</option>
+														</select>
+													</div>
+												</div>
+												<div class="quick-select">
+													<span style="font-size: 14px; color: #666; margin-right: 10px;">Quick sizes:</span>
+													<button type="button" class="quick-btn" onclick="setWindowSize(1, 3, 5)">3x5</button>
+													<button type="button" class="quick-btn" onclick="setWindowSize(1, 4, 6)">4x6</button>
+													<button type="button" class="quick-btn" onclick="setWindowSize(1, 5, 6)">5x6</button>
+													<button type="button" class="quick-btn" onclick="setWindowSize(1, 6, 8)">6x8</button>
+												</div>
+											</div>
+										</div>
+										<button type="button" class="add-window-btn" onclick="addWindow()">+ Add Another Window Set</button>
+									</div>
+
+									<!-- Timeline Section -->
+									<div class="calc-section">
+										<h3 class="calc-section-title">When Do You Need Installation?</h3>
+										<div class="timeline-options">
+											<label class="timeline-option">
+												<input type="radio" name="timeline" value="asap" checked>
+												<div>🚀 ASAP</div>
+												<small style="color: #666;">This week</small>
+											</label>
+											<label class="timeline-option">
+												<input type="radio" name="timeline" value="twoweeks">
+												<div>📅 Soon</div>
+												<small style="color: #666;">Within 2 weeks</small>
+											</label>
+											<label class="timeline-option">
+												<input type="radio" name="timeline" value="month">
+												<div>🗓️ Flexible</div>
+												<small style="color: #666;">Within a month</small>
+											</label>
+											<label class="timeline-option">
+												<input type="radio" name="timeline" value="planning">
+												<div>📝 Planning</div>
+												<small style="color: #666;">Just getting quotes</small>
+											</label>
+										</div>
+									</div>
+
+									<button type="submit" class="calculate-btn">Calculate My Price →</button>
+								</form>
+
+								<!-- Price Result Section -->
+								<div class="price-result" id="priceResult">
+									<div class="price-header">
+										<h2>Your Personalized Quote</h2>
+										<div class="price-amount" id="totalPrice">$0</div>
+									</div>
+
+									<div class="price-breakdown">
+										<div class="breakdown-row">
+											<span>Window Tinting (<span id="totalSqft">0</span> sq ft @ $14/sqft)</span>
+											<span id="basePrice">$0</span>
+										</div>
+										<div class="breakdown-row" id="secondFloorRow" style="display:none;">
+											<span>Second Floor Access</span>
+											<span id="secondFloorPrice">$0</span>
+										</div>
+										<div class="breakdown-row" id="highFloorRow" style="display:none;">
+											<span>High/Difficult Access</span>
+											<span id="highFloorPrice">$0</span>
+										</div>
+										<div class="breakdown-row">
+											<span>Professional Installation</span>
+											<span>Included</span>
+										</div>
+										<div class="breakdown-row">
+											<span>Lifetime Warranty</span>
+											<span>Included</span>
+										</div>
+										<div class="breakdown-row">
+											<span>Total Investment</span>
+											<span id="finalPrice">$0</span>
+										</div>
+									</div>
+
+									<div style="text-align: center;">
+										<div class="savings-highlight">
+											💰 You'll Save ~$<span id="monthlySavings">0</span>/month on energy bills!
+										</div>
+									</div>
+
+									<div class="cta-section">
+										<h3>Ready to Lock in This Price?</h3>
+										<a href="tel:8888875897" class="phone-btn-calc">📞 Call 888-887-5897</a>
+										<p style="margin-top: 15px; opacity: 0.9;">Or we'll call you within 30 minutes</p>
+									</div>
 								</div>
 							</div>
 
@@ -200,6 +336,191 @@
 				</div>
 			</div>
 		</main>
+
+		<script is:inline>
+			let windowCount = 1;
+
+			// Initialize goal options
+			document.addEventListener('DOMContentLoaded', function() {
+				document.querySelectorAll('.goal-option').forEach(option => {
+					option.addEventListener('click', function() {
+						const checkbox = this.querySelector('input');
+						if (!checkbox.checked) {
+							this.classList.add('selected');
+						} else {
+							this.classList.remove('selected');
+						}
+					});
+
+					// Set initial state
+					const checkbox = option.querySelector('input');
+					if (checkbox.checked) {
+						option.classList.add('selected');
+					}
+				});
+
+				// Initialize timeline options
+				document.querySelectorAll('.timeline-option').forEach(option => {
+					option.addEventListener('click', function() {
+						document.querySelectorAll('.timeline-option').forEach(opt => opt.classList.remove('selected'));
+						this.classList.add('selected');
+					});
+				});
+
+				// Set initial timeline selection
+				const checkedTimeline = document.querySelector('.timeline-option input:checked');
+				if (checkedTimeline) {
+					checkedTimeline.parentElement.classList.add('selected');
+				}
+			});
+
+			// Add new window set
+			window.addWindow = function() {
+				windowCount++;
+				const container = document.getElementById('windowsContainer');
+				const newWindow = document.createElement('div');
+				newWindow.className = 'window-entry';
+				newWindow.dataset.window = windowCount;
+
+				newWindow.innerHTML = `
+					<div class="window-entry-header">
+						<span class="window-entry-title">Window Set ${windowCount}</span>
+						<span class="remove-btn" onclick="removeWindow(${windowCount})">× Remove</span>
+					</div>
+					<div class="input-row">
+						<div class="input-group">
+							<label>Width (feet)</label>
+							<input type="number" class="input-control" name="width${windowCount}" placeholder="4" min="0.5" step="0.5" required>
+						</div>
+						<div class="input-group">
+							<label>Height (feet)</label>
+							<input type="number" class="input-control" name="height${windowCount}" placeholder="6" min="0.5" step="0.5" required>
+						</div>
+					</div>
+					<div class="input-row">
+						<div class="input-group">
+							<label>Number of Windows</label>
+							<input type="number" class="input-control" name="quantity${windowCount}" placeholder="1" min="1" value="1" required>
+						</div>
+						<div class="input-group">
+							<label>Floor Location</label>
+							<select class="input-control" name="floor${windowCount}">
+								<option value="first">First Floor</option>
+								<option value="second">Second Floor (+$2/sqft)</option>
+								<option value="high">High/Difficult (+$4/sqft)</option>
+							</select>
+						</div>
+					</div>
+					<div class="quick-select">
+						<span style="font-size: 14px; color: #666; margin-right: 10px;">Quick sizes:</span>
+						<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 3, 5)">3x5</button>
+						<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 4, 6)">4x6</button>
+						<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 5, 6)">5x6</button>
+						<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 6, 8)">6x8</button>
+					</div>
+				`;
+
+				container.appendChild(newWindow);
+			}
+
+			// Remove window set
+			window.removeWindow = function(num) {
+				const windowElement = document.querySelector(`[data-window="${num}"]`);
+				if (windowElement) {
+					windowElement.remove();
+				}
+			}
+
+			// Quick size setter
+			window.setWindowSize = function(windowNum, width, height) {
+				document.querySelector(`[name="width${windowNum}"]`).value = width;
+				document.querySelector(`[name="height${windowNum}"]`).value = height;
+			}
+
+			// Calculate price
+			document.addEventListener('DOMContentLoaded', function() {
+				document.getElementById('priceCalculator').addEventListener('submit', function(e) {
+					e.preventDefault();
+
+					let totalSqft = 0;
+					let secondFloorSqft = 0;
+					let highFloorSqft = 0;
+
+					const baseRate = 14; // $14 per sqft
+					const secondFloorExtra = 2; // $2 extra for second floor
+					const highFloorExtra = 4; // $4 extra for high/difficult
+
+					// Calculate for all window sets
+					const windowEntries = document.querySelectorAll('.window-entry');
+
+					windowEntries.forEach(entry => {
+						const windowNum = entry.dataset.window;
+						const width = parseFloat(document.querySelector(`[name="width${windowNum}"]`).value) || 0;
+						const height = parseFloat(document.querySelector(`[name="height${windowNum}"]`).value) || 0;
+						const quantity = parseInt(document.querySelector(`[name="quantity${windowNum}"]`).value) || 1;
+						const floor = document.querySelector(`[name="floor${windowNum}"]`).value;
+
+						const sqft = width * height * quantity;
+						totalSqft += sqft;
+
+						if (floor === 'second') {
+							secondFloorSqft += sqft;
+						} else if (floor === 'high') {
+							highFloorSqft += sqft;
+						}
+					});
+
+					// Calculate pricing
+					const basePrice = Math.round(totalSqft * baseRate);
+					const secondFloorPrice = Math.round(secondFloorSqft * secondFloorExtra);
+					const highFloorPrice = Math.round(highFloorSqft * highFloorExtra);
+					const totalPrice = basePrice + secondFloorPrice + highFloorPrice;
+
+					// Estimate monthly savings (approximately $1 per sqft per month)
+					const monthlySavings = Math.round(totalSqft * 1);
+
+					// Update display
+					document.getElementById('totalSqft').textContent = totalSqft.toFixed(1);
+					document.getElementById('basePrice').textContent = `$${basePrice.toLocaleString()}`;
+					document.getElementById('totalPrice').textContent = `$${totalPrice.toLocaleString()}`;
+					document.getElementById('finalPrice').textContent = `$${totalPrice.toLocaleString()}`;
+					document.getElementById('monthlySavings').textContent = monthlySavings;
+
+					// Show/hide additional charges
+					if (secondFloorSqft > 0) {
+						document.getElementById('secondFloorRow').style.display = 'flex';
+						document.getElementById('secondFloorPrice').textContent = `$${secondFloorPrice.toLocaleString()}`;
+					} else {
+						document.getElementById('secondFloorRow').style.display = 'none';
+					}
+
+					if (highFloorSqft > 0) {
+						document.getElementById('highFloorRow').style.display = 'flex';
+						document.getElementById('highFloorPrice').textContent = `$${highFloorPrice.toLocaleString()}`;
+					} else {
+						document.getElementById('highFloorRow').style.display = 'none';
+					}
+
+					// Show price result
+					document.getElementById('priceResult').classList.add('show');
+
+					// Smooth scroll to results
+					document.getElementById('priceResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+					// Send data to parent/GHL if needed
+					if (window.parent) {
+						window.parent.postMessage({
+							type: 'calculatorComplete',
+							totalSqft: totalSqft,
+							totalPrice: totalPrice,
+							monthlySavings: monthlySavings,
+							goals: Array.from(document.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value),
+							timeline: document.querySelector('input[name="timeline"]:checked').value
+						}, '*');
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
 
@@ -681,6 +1002,351 @@
 
 		.featured-benefit h3 {
 			font-size: 1.25rem;
+		}
+	}
+
+	/* ========================================
+	   CALCULATOR STYLES
+	   ======================================== */
+
+	.calc-section {
+		margin-bottom: 30px;
+	}
+
+	.calc-section-title {
+		font-size: 18px;
+		font-weight: 600;
+		margin-bottom: 15px;
+		color: var(--gray-900);
+	}
+
+	.goals-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.goal-option {
+		padding: 15px;
+		border: 2px solid var(--gray-200);
+		border-radius: 10px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		text-align: center;
+		background: white;
+	}
+
+	.goal-option:hover {
+		border-color: var(--gold);
+		transform: translateY(-2px);
+		box-shadow: 0 5px 15px rgba(251, 191, 36, 0.2);
+	}
+
+	.goal-option.selected {
+		border-color: var(--gold);
+		background: linear-gradient(135deg, var(--gold) 0%, #f59e0b 100%);
+		color: var(--black);
+	}
+
+	.goal-option input {
+		display: none;
+	}
+
+	.goal-icon {
+		font-size: 28px;
+		margin-bottom: 6px;
+	}
+
+	.windows-container {
+		background: var(--gray-50);
+		padding: 20px;
+		border-radius: 12px;
+		margin-bottom: 15px;
+	}
+
+	.window-entry {
+		background: white;
+		padding: 20px;
+		border-radius: 10px;
+		margin-bottom: 15px;
+		position: relative;
+		border: 2px solid var(--gray-200);
+	}
+
+	.window-entry:last-of-type {
+		margin-bottom: 0;
+	}
+
+	.window-entry-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 15px;
+	}
+
+	.window-entry-title {
+		font-weight: 600;
+		color: var(--gray-900);
+	}
+
+	.remove-btn {
+		color: #dc3545;
+		cursor: pointer;
+		font-size: 14px;
+		padding: 5px 10px;
+		border-radius: 5px;
+		transition: background 0.3s;
+	}
+
+	.remove-btn:hover {
+		background: #fee;
+	}
+
+	.input-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 15px;
+		margin-bottom: 15px;
+	}
+
+	.input-row:last-child {
+		margin-bottom: 0;
+	}
+
+	.input-group {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.input-group label {
+		font-size: 14px;
+		color: var(--gray-700);
+		margin-bottom: 5px;
+		font-weight: 500;
+	}
+
+	.input-control {
+		padding: 10px 15px;
+		border: 2px solid var(--gray-200);
+		border-radius: 8px;
+		font-size: 16px;
+		transition: all 0.3s ease;
+		font-family: inherit;
+	}
+
+	.input-control:focus {
+		outline: none;
+		border-color: var(--gold);
+		box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+	}
+
+	.add-window-btn {
+		background: white;
+		border: 2px dashed var(--gold);
+		color: var(--gold);
+		padding: 15px;
+		border-radius: 10px;
+		cursor: pointer;
+		font-weight: 600;
+		transition: all 0.3s ease;
+		width: 100%;
+		font-size: 16px;
+	}
+
+	.add-window-btn:hover {
+		background: var(--gold);
+		color: var(--black);
+		border-style: solid;
+	}
+
+	.timeline-options {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.timeline-option {
+		padding: 15px;
+		border: 2px solid var(--gray-200);
+		border-radius: 10px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		text-align: center;
+	}
+
+	.timeline-option:hover {
+		border-color: var(--gold);
+	}
+
+	.timeline-option.selected {
+		border-color: var(--gold);
+		background: #fffef5;
+	}
+
+	.timeline-option input {
+		display: none;
+	}
+
+	.quick-select {
+		display: flex;
+		gap: 8px;
+		margin-top: 10px;
+		flex-wrap: wrap;
+	}
+
+	.quick-btn {
+		padding: 6px 12px;
+		border: 1px solid var(--gray-200);
+		border-radius: 20px;
+		background: white;
+		cursor: pointer;
+		font-size: 14px;
+		transition: all 0.3s ease;
+	}
+
+	.quick-btn:hover {
+		border-color: var(--gold);
+		background: #fffef5;
+	}
+
+	.calculate-btn {
+		background: linear-gradient(135deg, var(--black) 0%, var(--gray-800) 100%);
+		color: white;
+		padding: 18px 40px;
+		border: none;
+		border-radius: 10px;
+		font-size: 18px;
+		font-weight: 600;
+		cursor: pointer;
+		width: 100%;
+		transition: all 0.3s ease;
+		margin-top: 10px;
+	}
+
+	.calculate-btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	}
+
+	.price-result {
+		display: none;
+		margin-top: 30px;
+		padding: 30px;
+		background: linear-gradient(135deg, var(--black) 0%, var(--gray-800) 100%);
+		border-radius: 16px;
+		color: white;
+	}
+
+	.price-result.show {
+		display: block;
+		animation: slideIn 0.5s ease;
+	}
+
+	@keyframes slideIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.price-header {
+		text-align: center;
+		margin-bottom: 25px;
+	}
+
+	.price-header h2 {
+		font-size: 22px;
+		margin-bottom: 10px;
+		opacity: 0.95;
+		font-weight: 700;
+	}
+
+	.price-amount {
+		font-size: 48px;
+		font-weight: 700;
+		margin: 15px 0;
+		color: var(--gold);
+	}
+
+	.price-breakdown {
+		background: rgba(255, 255, 255, 0.1);
+		padding: 20px;
+		border-radius: 12px;
+		margin: 20px 0;
+	}
+
+	.breakdown-row {
+		display: flex;
+		justify-content: space-between;
+		padding: 10px 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.breakdown-row:last-child {
+		border-bottom: none;
+		font-weight: 700;
+		font-size: 18px;
+		margin-top: 10px;
+		padding-top: 20px;
+		border-top: 2px solid rgba(255, 255, 255, 0.4);
+	}
+
+	.savings-highlight {
+		background: var(--gold);
+		color: var(--black);
+		padding: 15px 25px;
+		border-radius: 30px;
+		display: inline-block;
+		font-weight: 600;
+		font-size: 16px;
+		margin: 15px auto;
+	}
+
+	.cta-section {
+		text-align: center;
+		margin-top: 25px;
+		padding-top: 25px;
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.cta-section h3 {
+		margin-bottom: 15px;
+		font-size: 18px;
+	}
+
+	.phone-btn-calc {
+		background: white;
+		color: var(--black);
+		padding: 15px 30px;
+		border-radius: 30px;
+		font-size: 18px;
+		font-weight: 600;
+		text-decoration: none;
+		display: inline-block;
+		transition: all 0.3s ease;
+	}
+
+	.phone-btn-calc:hover {
+		transform: scale(1.05);
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	}
+
+	@media (max-width: 768px) {
+		.goals-grid,
+		.timeline-options {
+			grid-template-columns: 1fr;
+		}
+
+		.input-row {
+			grid-template-columns: 1fr;
+		}
+
+		.price-amount {
+			font-size: 38px;
 		}
 	}
 </style>
