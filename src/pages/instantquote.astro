@@ -314,6 +314,9 @@
 										<h3>Ready to Lock in This Price?</h3>
 										<a href="tel:8888875897" class="phone-btn-calc">📞 Call 888-887-5897</a>
 										<p style="margin-top: 15px; opacity: 0.9;">Or we'll call you within 30 minutes</p>
+										<button onclick="downloadQuote()" class="download-quote-btn" style="margin-top: 15px;">
+											📄 Download Quote
+										</button>
 									</div>
 								</div>
 							</div>
@@ -339,6 +342,14 @@
 
 		<script is:inline>
 			let windowCount = 1;
+			let userPhone = null;
+
+			// Extract phone number from URL on page load
+			(function() {
+				const urlParams = new URLSearchParams(window.location.search);
+				userPhone = urlParams.get('phone');
+				console.log('User phone from URL:', userPhone);
+			})();
 
 			// Initialize goal options
 			document.addEventListener('DOMContentLoaded', function() {
@@ -502,19 +513,115 @@
 					// Smooth scroll to results
 					document.getElementById('priceResult').scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-					// Send data to parent/GHL if needed
-					if (window.parent) {
-						window.parent.postMessage({
-							type: 'calculatorComplete',
-							totalSqft: totalSqft,
-							totalPrice: totalPrice,
-							monthlySavings: monthlySavings,
-							goals: Array.from(document.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value),
-							timeline: document.querySelector('input[name="timeline"]:checked').value
-						}, '*');
-					}
+					// Collect calculator data
+					const calculatorData = {
+						phone: userPhone,
+						total_sqft: totalSqft,
+						total_price: totalPrice,
+						monthly_savings: monthlySavings,
+						goals: Array.from(document.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value).join(', '),
+						timeline: document.querySelector('input[name="timeline"]:checked').value,
+						completed_at: new Date().toISOString()
+					};
+
+					// Store data globally for PDF download
+					window.quoteData = calculatorData;
+
+					// Send to GHL webhook
+					sendToGHL(calculatorData);
 				});
 			});
+
+			// Function to send calculator data to GHL
+			async function sendToGHL(data) {
+				const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/TxIJ5fOGNqTo6vAHBuoM/webhook-trigger/f7569969-299f-4f67-b830-269c8a17f6a3';
+
+				try {
+					const response = await fetch(WEBHOOK_URL, {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data)
+					});
+
+					if (response.ok) {
+						console.log('Calculator data sent to GHL successfully');
+					} else {
+						console.error('Failed to send data to GHL:', response.statusText);
+					}
+				} catch (error) {
+					console.error('Error sending data to GHL:', error);
+				}
+			}
+
+			// Function to download quote as text file (simple version)
+			window.downloadQuote = function() {
+				if (!window.quoteData) {
+					alert('Please calculate your quote first');
+					return;
+				}
+
+				const data = window.quoteData;
+				const totalPrice = document.getElementById('totalPrice').textContent;
+				const totalSqft = document.getElementById('totalSqft').textContent;
+				const monthlySavings = document.getElementById('monthlySavings').textContent;
+
+				const quoteText = `
+LEGACY WINDOW TINT
+Professional Window Tinting Quote
+=====================================
+
+Quote Date: ${new Date().toLocaleDateString()}
+
+YOUR QUOTE: ${totalPrice}
+=====================================
+
+Quote Details:
+- Total Square Footage: ${totalSqft} sq ft
+- Base Rate: $14 per sq ft
+- Estimated Monthly Savings: $${monthlySavings}/month
+
+What's Included:
+✓ Professional Installation
+✓ Lifetime Warranty
+✓ Premium Geoshield Films
+✓ 99% UV Protection
+✓ Up to 75% Heat Reduction
+
+Your Goals:
+${data.goals}
+
+Installation Timeline:
+${data.timeline}
+
+=====================================
+Next Steps:
+
+Call us to lock in this price:
+📞 888-887-5897
+
+Or we'll call you within 30 minutes!
+
+=====================================
+Serving Maricopa County
+Licensed & Insured | 15+ Years Experience
+
+This quote is valid for 30 days.
+				`.trim();
+
+				// Create and download the file
+				const blob = new Blob([quoteText], { type: 'text/plain' });
+				const url = window.URL.createObjectURL(blob);
+				const a = document.createElement('a');
+				a.href = url;
+				a.download = `Legacy-Window-Tint-Quote-${new Date().toISOString().split('T')[0]}.txt`;
+				document.body.appendChild(a);
+				a.click();
+				document.body.removeChild(a);
+				window.URL.revokeObjectURL(url);
+			}
+
 		</script>
 	</body>
 </html>
@@ -1328,6 +1435,26 @@
 	.phone-btn-calc:hover {
 		transform: scale(1.05);
 		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	}
+
+	.download-quote-btn {
+		background: transparent;
+		color: white;
+		border: 2px solid white;
+		padding: 12px 24px;
+		border-radius: 30px;
+		font-size: 16px;
+		font-weight: 600;
+		cursor: pointer;
+		display: inline-block;
+		transition: all 0.3s ease;
+		font-family: inherit;
+	}
+
+	.download-quote-btn:hover {
+		background: white;
+		color: var(--black);
+		transform: scale(1.05);
 	}
 
 	@media (max-width: 768px) {
