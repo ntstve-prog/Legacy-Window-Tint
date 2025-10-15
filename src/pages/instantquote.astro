@@ -216,9 +216,28 @@
 												</div>
 												<div class="input-row">
 													<div class="input-group">
+														<label>Which Room?</label>
+														<select class="input-control" name="room1" required>
+															<option value="">Select room...</option>
+															<option value="Living Room">Living Room</option>
+															<option value="Master Bedroom">Master Bedroom</option>
+															<option value="Bedroom">Bedroom</option>
+															<option value="Kitchen">Kitchen</option>
+															<option value="Dining Room">Dining Room</option>
+															<option value="Home Office">Home Office</option>
+															<option value="Bathroom">Bathroom</option>
+															<option value="Sunroom">Sunroom</option>
+															<option value="Garage">Garage</option>
+															<option value="Sliding Glass Door">Sliding Glass Door</option>
+															<option value="Other">Other</option>
+														</select>
+													</div>
+													<div class="input-group">
 														<label>Number of Windows</label>
 														<input type="number" class="input-control" name="quantity1" placeholder="1" min="1" value="1" required>
 													</div>
+												</div>
+												<div class="input-row">
 													<div class="input-group">
 														<label>Floor Location</label>
 														<select class="input-control" name="floor1">
@@ -226,6 +245,9 @@
 															<option value="second">Second Floor (+$2/sqft)</option>
 															<option value="high">High/Difficult (+$4/sqft)</option>
 														</select>
+													</div>
+													<div class="input-group">
+														<!-- Empty space for layout balance -->
 													</div>
 												</div>
 												<div class="quick-select">
@@ -416,6 +438,8 @@
 					input.name = baseName + windowCount;
 					if (input.type === 'number') {
 						input.value = input.name.includes('quantity') ? '1' : '';
+					} else if (input.tagName === 'SELECT' && baseName === 'room') {
+						input.value = ''; // Reset room selection
 					}
 				});
 
@@ -451,6 +475,7 @@
 					let totalSqft = 0;
 					let secondFloorSqft = 0;
 					let highFloorSqft = 0;
+					let windowsData = [];
 
 					const baseRate = 14; // $14 per sqft
 					const secondFloorExtra = 2; // $2 extra for second floor
@@ -465,6 +490,7 @@
 						const height = parseFloat(document.querySelector(`[name="height${windowNum}"]`).value) || 0;
 						const quantity = parseInt(document.querySelector(`[name="quantity${windowNum}"]`).value) || 1;
 						const floor = document.querySelector(`[name="floor${windowNum}"]`).value;
+						const room = document.querySelector(`[name="room${windowNum}"]`)?.value || '';
 
 						const sqft = width * height * quantity;
 						totalSqft += sqft;
@@ -474,6 +500,17 @@
 						} else if (floor === 'high') {
 							highFloorSqft += sqft;
 						}
+
+						// Collect detailed window data
+						windowsData.push({
+							set: parseInt(windowNum),
+							room: room,
+							width: width,
+							height: height,
+							quantity: quantity,
+							floor: floor,
+							sqft: sqft
+						});
 					});
 
 					// Calculate pricing
@@ -519,6 +556,9 @@
 						total_sqft: totalSqft,
 						total_price: totalPrice,
 						monthly_savings: monthlySavings,
+						window_count: windowsData.length,
+						windows: windowsData,
+						rooms: [...new Set(windowsData.map(w => w.room).filter(r => r))].join(', '),
 						goals: Array.from(document.querySelectorAll('input[name="goals"]:checked')).map(cb => cb.value).join(', '),
 						timeline: document.querySelector('input[name="timeline"]:checked').value,
 						completed_at: new Date().toISOString()
