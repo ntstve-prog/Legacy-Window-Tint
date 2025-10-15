@@ -382,10 +382,45 @@
 				newWindow.className = 'window-entry';
 				newWindow.dataset.window = windowCount;
 
+			newWindow.innerHTML = `
+				<div class="window-entry-header">
+					<span class="window-entry-title">Window Set ${windowCount}</span>
+					<span class="remove-btn" onclick="removeWindow(${windowCount})">× Remove</span>
+				</div>
+				<div class="input-row">
+					<div class="input-group">
+						<label>Width (feet)</label>
+						<input type="number" class="input-control" name="width${windowCount}" placeholder="4" min="0.5" step="0.5" required>
+					</div>
+					<div class="input-group">
+						<label>Height (feet)</label>
+						<input type="number" class="input-control" name="height${windowCount}" placeholder="6" min="0.5" step="0.5" required>
+					</div>
+				</div>
+				<div class="input-row">
+					<div class="input-group">
+						<label>Number of Windows</label>
+						<input type="number" class="input-control" name="quantity${windowCount}" placeholder="1" min="1" value="1" required>
+					</div>
+					<div class="input-group">
+						<label>Floor Location</label>
+						<select class="input-control" name="floor${windowCount}">
+							<option value="first">First Floor</option>
+							<option value="second">Second Floor (+$2/sqft)</option>
+							<option value="high">High/Difficult (+$4/sqft)</option>
+						</select>
+					</div>
+				</div>
+				<div class="quick-select">
+					<span style="font-size: 14px; color: #666; margin-right: 10px;">Quick sizes:</span>
+					<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 3, 5)">3x5</button>
+					<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 4, 6)">4x6</button>
+					<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 5, 6)">5x6</button>
+					<button type="button" class="quick-btn" onclick="setWindowSize(${windowCount}, 6, 8)">6x8</button>
+				</div>
+			`;
 
-			newWindow.innerHTML = "<div class=\"window-entry-header\"><span class=\"window-entry-title\">Window Set " + windowCount + "</span><span class=\"remove-btn\" onclick=\"removeWindow(" + windowCount + ")\">× Remove</span></div><div class=\"input-row\"><div class=\"input-group\"><label>Width (feet)</label><input type=\"number\" class=\"input-control\" name=\"width" + windowCount + "\" placeholder=\"4\" min=\"0.5\" step=\"0.5\" required></div><div class=\"input-group\"><label>Height (feet)</label><input type=\"number\" class=\"input-control\" name=\"height" + windowCount + "\" placeholder=\"6\" min=\"0.5\" step=\"0.5\" required></div></div><div class=\"input-row\"><div class=\"input-group\"><label>Number of Windows</label><input type=\"number\" class=\"input-control\" name=\"quantity" + windowCount + "\" placeholder=\"1\" min=\"1\" value=\"1\" required></div><div class=\"input-group\"><label>Floor Location</label><select class=\"input-control\" name=\"floor" + windowCount + "\"><option value=\"first\">First Floor</option><option value=\"second\">Second Floor (+$2/sqft)</option><option value=\"high\">High/Difficult (+$4/sqft)</option></select></div></div><div class=\"quick-select\"><span style=\"font-size: 14px; color: #666; margin-right: 10px;\">Quick sizes:</span><button type=\"button\" class=\"quick-btn\" onclick=\"setWindowSize(" + windowCount + ", 3, 5)\">3x5</button><button type=\"button\" class=\"quick-btn\" onclick=\"setWindowSize(" + windowCount + ", 4, 6)\">4x6</button><button type=\"button\" class=\"quick-btn\" onclick=\"setWindowSize(" + windowCount + ", 5, 6)\">5x6</button><button type=\"button\" class=\"quick-btn\" onclick=\"setWindowSize(" + windowCount + ", 6, 8)\">6x8</button></div>";
-
-				container.appendChild(newWindow);
+			container.appendChild(newWindow);
 			}
 
 			// Remove window set
