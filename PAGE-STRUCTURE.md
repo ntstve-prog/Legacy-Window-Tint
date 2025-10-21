@@ -24,7 +24,7 @@
 │  [Up to 75%]  [$250+]  [99%+]           │
 │  Heat Reduction  Savings  UV Protection  │
 │  ───────────────────────────────────    │
-│  [☎ Call 602-883-2955] [Get Free Quote] │
+│  [☎ Call (602) 883-2955] [Get Free Quote] │
 └─────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────┐
@@ -121,7 +121,7 @@
 │  Same-week installation available       │  ← Urgency
 │  while spots last                       │
 │  ───────────────────────────────────    │
-│  [☎ Call 602-883-2955] [Get Free Quote] │  ← Final conversion push
+│  [☎ Call (602) 883-2955] [Get Free Quote] │  ← Final conversion push
 │  ───────────────────────────────────    │
 │  15+ Years • Licensed • Lifetime Warranty│
 └─────────────────────────────────────────┘
@@ -129,7 +129,7 @@
 ┌─────────────────────────────────────────┐
 │           FOOTER                        │
 │  © 2025 Legacy Window Tint              │
-│  602-883-2955                           │
+│  (602) 883-2955                           │
 └─────────────────────────────────────────┘
 ```
 

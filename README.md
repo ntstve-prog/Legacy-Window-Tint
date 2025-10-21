@@ -8,7 +8,7 @@ High-converting PPC landing page for Legacy Window Tint residential window tinti
 - **Conversion-Focused**: Every element serves conversion (phone calls or form submissions)
 - **Fast Load Time**: Minimal dependencies, inline critical CSS, under 2 second load
 - **Geographic Coverage**: All of Maricopa County (not West Valley specific)
-- **Clear CTAs**: Prominent phone number (602-883-2955) and quote form
+- **Clear CTAs**: Prominent phone number ((602) 883-2955) and quote form
 - **Social Proof**: Phoenix-area testimonials from multiple cities
 - **Minimal Friction**: Simple 3-step process, easy-to-understand benefits
 
@@ -41,7 +41,7 @@ npm run preview
 
 ## Contact Info
 
-- **Phone**: 602-883-2955 (click-to-call enabled)
+- **Phone**: (602) 883-2955 (click-to-call enabled)
 - **Form**: GoHighLevel embedded iframe
 - **Service Area**: All of Maricopa County, AZ
 
