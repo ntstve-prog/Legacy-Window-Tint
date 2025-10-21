@@ -25,7 +25,7 @@ A high-converting PPC landing page for Legacy Window Tint with:
 
 - **8 focused sections** (not 13+ like original site)
 - **Mobile-first design** with sticky phone button
-- **Dual conversion paths**: Phone (888-887-5897) or Form
+- **Dual conversion paths**: Phone (602-883-2955) or Form
 - **GoHighLevel form** embedded and prominent
 - **All Maricopa County** targeting (not just West Valley)
 - **Fast load time** optimized for Quality Score
@@ -135,7 +135,7 @@ After deployment, set up:
 
 ## Contact Info to Verify
 
-- **Phone**: 888-887-5897 (appears 4 times)
+- **Phone**: 602-883-2955 (appears 4 times)
 - **Form**: GoHighLevel iframe (ID: 3hOHkeFr8mpl7752AS3Z)
 - **Service Area**: All of Maricopa County
 - **Cities**: Scottsdale, Phoenix, Tempe, Mesa, Chandler, Gilbert, Surprise, Peoria, Glendale, Goodyear, Buckeye

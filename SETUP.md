@@ -67,7 +67,7 @@ npm run preview
 - [ ] Test on 3G network (throttle in DevTools)
 
 ### Conversion Testing
-- [ ] Phone number visible immediately: 888-887-5897
+- [ ] Phone number visible immediately: 602-883-2955
 - [ ] Quote form appears within first 2 scroll sections
 - [ ] CTAs are prominent and clear
 - [ ] No distracting elements
@@ -85,7 +85,7 @@ npm run preview
 - **Geographic Targeting**: All of Maricopa County, AZ
 - **Keywords**: window tinting phoenix, residential window tint, home window film, etc.
 - **Landing Page URL**: Your production URL
-- **Call Extension**: 888-887-5897
+- **Call Extension**: 602-883-2955
 - **Conversion Goals**:
   1. Form submissions (track iframe submissions)
   2. Phone calls (minimum 60 seconds)
@@ -93,7 +93,7 @@ npm run preview
 ### Tracking Setup
 1. Add Google Analytics tag to `<head>` in Layout.astro
 2. Set up conversion tracking for form submissions
-3. Enable call tracking on 888-887-5897
+3. Enable call tracking on 602-883-2955
 4. Monitor bounce rate (target: under 50%)
 5. Track time on page (target: 2+ minutes)
 

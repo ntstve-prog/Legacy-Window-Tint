@@ -23,9 +23,9 @@ npm run preview
 ```
 
 ### 3. Verify Key Elements
-- [ ] Phone number 888-887-5897 displays correctly everywhere
+- [ ] Phone number 602-883-2955 displays correctly everywhere
 - [ ] Form iframe loads from GoHighLevel
-- [ ] All CTAs link to #quote-form or tel:888-887-5897
+- [ ] All CTAs link to #quote-form or tel:602-883-2955
 - [ ] Sticky mobile phone button appears on mobile
 - [ ] FAQ accordion expands/collapses
 - [ ] Smooth scroll works for anchor links
@@ -129,7 +129,7 @@ npm run build
 
 **Phone Call Tracking**:
 - Set up call forwarding tracking number
-- Replace 888-887-5897 with tracking number in production
+- Replace 602-883-2955 with tracking number in production
 - Or use dynamic number insertion
 
 **Form Submission Tracking**:
@@ -190,7 +190,7 @@ Make sure your ad copy matches landing page messaging:
 - Check browser console for errors
 
 ### Phone Links Not Working on Mobile
-- Verify format: `tel:888-887-5897` (no spaces or formatting)
+- Verify format: `tel:602-883-2955` (no spaces or formatting)
 - Test on actual device (not simulator)
 
 ### Slow Load Time
