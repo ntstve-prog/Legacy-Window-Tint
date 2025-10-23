@@ -679,7 +679,7 @@ const { title, description } = Astro.props;
 			const target = document.querySelector(href);
 			if (target) {
 				e.preventDefault();
-				const headerOffset = 100;
+				const headerOffset = 150;
 				const elementPosition = target.getBoundingClientRect().top;
 				const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
