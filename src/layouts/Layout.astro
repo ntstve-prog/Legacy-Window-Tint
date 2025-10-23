@@ -165,7 +165,8 @@ const { title, description } = Astro.props;
 	}
 
 	html {
-		scroll-behavior: smooth;
+		/* Smooth scroll handled via JavaScript to ensure proper header offset */
+		scroll-behavior: auto;
 	}
 
 	body {
@@ -678,7 +679,7 @@ const { title, description } = Astro.props;
 			const target = document.querySelector(href);
 			if (target) {
 				e.preventDefault();
-				const headerOffset = 80;
+				const headerOffset = 100;
 				const elementPosition = target.getBoundingClientRect().top;
 				const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -686,6 +687,9 @@ const { title, description } = Astro.props;
 					top: offsetPosition,
 					behavior: 'smooth'
 				});
+
+				// Update URL hash without triggering scroll
+				history.pushState(null, '', href);
 			}
 		});
 	});
