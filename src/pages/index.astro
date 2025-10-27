@@ -694,7 +694,7 @@ import Layout from '../layouts/Layout.astro';
 	.benefits-quick {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 10px;
+		gap: 16px;
 		margin-bottom: 30px;
 		max-width: 900px;
 		margin-left: auto;
@@ -704,18 +704,19 @@ import Layout from '../layouts/Layout.astro';
 	.benefit-item {
 		display: flex;
 		align-items: center;
-		gap: 8px;
+		gap: 12px;
 		background: rgba(255, 255, 255, 0.1);
-		padding: 8px 12px;
-		border-radius: 6px;
-		font-size: 0.875rem;
+		padding: 16px 20px;
+		border-radius: 8px;
+		font-size: 1rem;
+		font-weight: 500;
 	}
 
 	.benefit-item svg {
 		flex-shrink: 0;
 		stroke: var(--gold);
-		width: 20px;
-		height: 20px;
+		width: 28px;
+		height: 28px;
 	}
 
 	.stats-bar {
@@ -832,12 +833,17 @@ import Layout from '../layouts/Layout.astro';
 		.benefits-quick {
 			grid-template-columns: 1fr;
 			margin-bottom: 20px;
-			gap: 8px;
+			gap: 12px;
 		}
 
 		.benefit-item {
-			padding: 6px 10px;
-			font-size: 0.8rem;
+			padding: 12px 16px;
+			font-size: 0.9rem;
+		}
+
+		.benefit-item svg {
+			width: 24px;
+			height: 24px;
 		}
 
 		.stats-bar {
