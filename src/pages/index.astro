@@ -4,14 +4,14 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
 	title="Window Tinting Phoenix | Cut Energy Bills 30-50% | Legacy Window Tint"
-	description="Professional residential window tinting for all of Maricopa County. Reduce heat, block UV, save money. Free quote!"
+	description="Professional residential window tinting for all of West Valley. Reduce heat, block UV, save money. Free quote!"
 >
 	<!-- LocalBusiness Schema Markup -->
 	<script type="application/ld+json" set:html={JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
 		"name": "Legacy Window Tint",
-		"description": "Professional residential window tinting serving all of Maricopa County. Cut energy bills 30-50% with expert film installation.",
+		"description": "Professional residential window tinting serving all of West Valley. Cut energy bills 30-50% with expert film installation.",
 		"url": "https://legacywindowtint.com",
 		"telephone": "(602) 883-2955",
 		"email": "info@legacywindowtint.com",
@@ -88,7 +88,7 @@ import Layout from '../layouts/Layout.astro';
 			},
 			{
 				"@type": "State",
-				"name": "Maricopa County",
+				"name": "West Valley",
 				"containedIn": "Arizona"
 			}
 		],
@@ -198,7 +198,8 @@ import Layout from '../layouts/Layout.astro';
 	<!-- Hero Section -->
 	<section class="hero">
 		<div class="container">
-			<h1>Stop Heat, Glare, and <span class="highlight">$400+</span> AC Bills Instantly</h1>
+			<h1 style="font-size: 1rem; font-weight: 600; color: var(--gray-300); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">West Valley Home Window Tinting</h1>
+			<h2>Stop Heat, Glare, and <span class="highlight" style="color: var(--gold);">$400+</span> AC Bills Instantly</h2>
 			<p class="trust-bar">Lifetime Warranty | Licensed & Insured</p>
 			<p class="hero-subtitle">Every room in your home stays comfortable all day while you save $250-$400/month on cooling. Professional installation in just 3 hours by certified technicians.</p>
 
@@ -254,6 +255,13 @@ import Layout from '../layouts/Layout.astro';
 				</a>
 				<a href="#quote-form" class="btn btn-primary">Calculate My Price</a>
 			</div>
+		</div>
+	</section>
+
+	<!-- Keyword Bar Section -->
+	<section class="keyword-bar">
+		<div class="container">
+			<p>Expert West Valley window tinting services for residential homes in Surprise, Peoria, Glendale, Buckeye, and Goodyear. Professional heat-blocking film installation that cuts energy bills 30-50% with lifetime warranty. Same-week installation available.</p>
 		</div>
 	</section>
 
@@ -467,7 +475,7 @@ import Layout from '../layouts/Layout.astro';
 	<!-- Social Proof -->
 	<section class="testimonials">
 		<div class="container">
-			<h2>Phoenix Homeowners Love Their Cooler Homes</h2>
+			<h2>West Valley Homeowners Love Their Cooler Homes</h2>
 
 			<div class="testimonial-grid">
 				<div class="testimonial">
@@ -510,7 +518,7 @@ import Layout from '../layouts/Layout.astro';
 						</svg>
 					</div>
 					<p>"AC used to run constantly. Now it actually cycles off! House stays 10 degrees cooler. Worth every penny."</p>
-					<cite>- Mike D., Scottsdale</cite>
+					<cite>- Mike D., Buckeye</cite>
 				</div>
 				<div class="testimonial">
 					<div class="stars">
@@ -531,7 +539,7 @@ import Layout from '../layouts/Layout.astro';
 						</svg>
 					</div>
 					<p>"Professional installation, done in 3 hours. My furniture isn't fading anymore. Should've done this years ago!"</p>
-					<cite>- Linda K., Mesa</cite>
+					<cite>- Linda K., Peoria</cite>
 				</div>
 			</div>
 		</div>
@@ -617,7 +625,7 @@ import Layout from '../layouts/Layout.astro';
 					<a href="#quote-form" class="btn btn-primary">Calculate My Price</a>
 				</div>
 
-				<p class="guarantee">Serving Maricopa County • Licensed & Insured • Lifetime Warranty</p>
+				<p class="guarantee">Serving West Valley • Licensed & Insured • Lifetime Warranty</p>
 			</div>
 		</div>
 	</section>
@@ -652,13 +660,13 @@ import Layout from '../layouts/Layout.astro';
 		position: relative;
 	}
 
-	.hero h1 {
+	.hero h2 {
 		margin-bottom: 15px;
 		color: var(--white);
 		font-size: 2.75rem;
 	}
 
-	.hero h1 .highlight {
+	.hero h2 .highlight {
 		color: var(--gold);
 		font-weight: 800;
 	}
@@ -754,7 +762,34 @@ import Layout from '../layouts/Layout.astro';
 		padding: 18px 36px;
 	}
 
+	/* Keyword Bar Section */
+	.keyword-bar {
+		background: var(--gray-900);
+		padding: 16px 20px;
+		border-bottom: 2px solid var(--gold);
+	}
+
+	.keyword-bar p {
+		color: var(--gray-300);
+		font-size: 0.875rem;
+		line-height: 1.6;
+		margin: 0;
+		max-width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
 	@media (max-width: 768px) {
+		.keyword-bar {
+			padding: 12px 15px;
+		}
+
+		.keyword-bar p {
+			font-size: 0.8rem;
+			line-height: 1.5;
+		}
+
 		.hero {
 			padding: 30px 3px 20px;
 			background-position: 65% center;
@@ -765,6 +800,15 @@ import Layout from '../layouts/Layout.astro';
 		}
 
 		.hero h1 {
+			font-size: 1rem;
+			font-weight: 600;
+			color: var(--gray-300);
+			margin-bottom: 8px;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+
+		.hero h2 {
 			font-size: 1.75rem;
 			padding: 0;
 			margin-bottom: 10px;
